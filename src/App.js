@@ -24,20 +24,11 @@ function App() {
         </p>
         {!joined && <LandingPage setName={setName} joinSession={joinSession} />}
 
-        <p id="server-time"></p>
-        <a
-          className="App-link"
-          href="https://reactjs.biz"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
         <button
           onClick={() =>
             webSocket.send(JSON.stringify({ thing: "hi", two: "y eet" }))
           }
-        ></button>
+        >test send data</button>
       </header>
     </div>
   );
