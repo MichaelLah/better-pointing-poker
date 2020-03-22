@@ -1,7 +1,7 @@
 const express = require("express");
 const path = require("path");
 const app = express();
-const { Server } = require("ws");
+const {Server} = require("ws");
 const PORT = process.env.PORT || 5000;
 
 const projectPath = process.env.NODE_ENV === "dev" ? "public" : "build";
@@ -12,19 +12,35 @@ app.get("/", (req, res) => {
   console.log(process.env);
 
   const fileToSend = process.env.NODE_ENV === "dev" ? "index.js" : "index.html";
-  console.log({ fileToSend, projectPath });
+  console.log({fileToSend, projectPath});
   res.sendFile(path.join(__dirname, projectPath, fileToSend));
 });
 
 app.get("/file", (req, res) => {
   res.sendFile(path.join(__dirname, "src", "logo.svg"));
 });
+
+app.get('/current_players', (req, res) => {
+  const response = {
+    players: [
+      {
+        id: 123,
+        name: "player 1",
+      },
+      {
+        id: 456,
+        name: "player 2",
+      }
+    ]
+  }
+  res.json(response)
+})
 app.listen(PORT, () => console.log(`Listening on port: ${PORT}`));
 
 /*
   WEBSOCKET SERVER STUFF
  */
-const wss = new Server({ port: 5001 });
+const wss = new Server({port: 5001});
 
 wss.on("connection", ws => {
   console.log("client connected!");
