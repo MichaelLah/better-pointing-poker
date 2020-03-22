@@ -7,11 +7,14 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "express": "^4.17.1",
+    "prettier": "^1.19.1",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
-    "react-scripts": "3.4.0"
+    "react-scripts": "3.4.0",
+    "ws": "^7.2.2"
   },
   "scripts": {
+    "dev": "env NODE_ENV=dev node App.js",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
