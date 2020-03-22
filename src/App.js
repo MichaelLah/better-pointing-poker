@@ -1,26 +1,19 @@
 import React, { useEffect, useState } from "react";
 import logo from "./logo.svg";
 import "./App.css";
-
+import LandingPage from "./LandingPage";
 const WS_HOST = "ws://localhost:5001/";
 
 function App() {
   const [webSocket, setWebSocket] = useState(null);
-  // var HOST = location.origin.replace(/^http/, 'ws')
-  // var ws = new WebSocket(HOST);
-  // var el;
-  //
-  // ws.onmessage = function (event) {
-  //   el = document.getElementById('server-time');
-  //   el.innerHTML = 'Server time: ' + event.data;
-  // };
+  const [name, setName] = useState("");
+  const [joined, setJoined] = useState(false);
+
+  const joinSession = () => {
+    setJoined(true);
+  };
   useEffect(() => {
-    // var el;
     setWebSocket(new WebSocket(WS_HOST));
-    // webSocket.onmessage = function (event) {
-    //   el = document.getElementById('server-time');
-    //   el.innerHTML = 'Server time: ' + event.data;
-    // };
   }, []);
   return (
     <div className="App">
@@ -29,6 +22,8 @@ function App() {
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
+        {!joined && <LandingPage setName={setName} joinSession={joinSession} />}
+
         <p id="server-time"></p>
         <a
           className="App-link"
