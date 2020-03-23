@@ -2,6 +2,7 @@ const express = require("express");
 const path = require("path");
 const app = express();
 const {Server} = require("ws");
+const redis = require('redis').createClient()
 const PORT = process.env.PORT || 5000;
 
 const projectPath = process.env.NODE_ENV === "dev" ? "public" : "build";
@@ -21,7 +22,11 @@ app.get("/file", (req, res) => {
 });
 
 app.post('/join_session', (req, res) => {
-  console.log(req)
+  redis.set('key', 'VALUE!!!', redis.print)
+  console.log(redis.get('key', redis.print))
+  redis.get('key', (err, res)=> {
+    console.log(res)
+  })
   const response = {
     players: [
       {
