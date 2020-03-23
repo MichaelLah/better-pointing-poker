@@ -20,6 +20,23 @@ app.get("/file", (req, res) => {
   res.sendFile(path.join(__dirname, "src", "logo.svg"));
 });
 
+app.post('/join_session', (req, res) => {
+  console.log(req)
+  const response = {
+    players: [
+      {
+        id: 123,
+        name: "player 1",
+      },
+      {
+        id: 456,
+        name: "player 2",
+      }
+    ]
+  }
+  res.json(response)
+})
+
 app.get('/current_players', (req, res) => {
   const response = {
     players: [

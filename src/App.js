@@ -8,11 +8,12 @@ function App() {
   const [webSocket, setWebSocket] = useState(null);
   const [name, setName] = useState("");
   const [id, setId] = useState("");
+  const [players, setPlayers] = useState({})
   const [joined, setJoined] = useState(false);
 
-  const joinSession = () => {
-    setJoined(true);
-  };
+  // const joinSession = () => {
+  //   setJoined(true);
+  // };
   useEffect(() => {
     setWebSocket(new WebSocket(WS_HOST));
     const fetchPlayers = async () => {
@@ -22,6 +23,14 @@ function App() {
     };
     fetchPlayers();
   }, []);
+
+  const joinSession = async name => {
+    const response = await fetch("/join_session", { method: "POST" });
+    const players = await response.json()
+    console.log(players)
+    // setPlayers()
+    // setJoined(true);
+  };
   return (
     <div className="App">
       <header className="App-header">
