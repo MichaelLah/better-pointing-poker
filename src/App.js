@@ -8,7 +8,7 @@ function App() {
   const [webSocket, setWebSocket] = useState(null);
   const [name, setName] = useState("");
   const [id, setId] = useState("");
-  const [players, setPlayers] = useState({})
+  const [players, setPlayers] = useState({});
   const [joined, setJoined] = useState(false);
 
   // const joinSession = () => {
@@ -25,9 +25,14 @@ function App() {
   }, []);
 
   const joinSession = async name => {
-    const response = await fetch("/join_session", { method: "POST" });
-    const players = await response.json()
-    console.log(players)
+    const payload = { name: 'asdfa' };
+    const response = await fetch("/join_session", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    });
+    const players = await response.json();
+    console.log(players);
     // setPlayers()
     // setJoined(true);
   };

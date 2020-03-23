@@ -7,7 +7,7 @@ const PORT = process.env.PORT || 5000;
 const projectPath = process.env.NODE_ENV === "dev" ? "public" : "build";
 
 app.use(express.static(path.join(__dirname, projectPath)));
-
+app.use(express.json())
 app.get("/", (req, res) => {
   console.log(process.env);
 
